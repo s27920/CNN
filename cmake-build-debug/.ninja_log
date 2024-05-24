@@ -1,0 +1,5 @@
+# ninja log v5
+573	714	7380370949559826	CNN.exe	e2c27ef16c0da6a4
+4	573	7380370948185558	CMakeFiles/CNN.dir/main.cpp.obj	2e7a9dc3dbc7ed42
+3	901	7380369885899363	CMakeFiles/CNN.dir/Perceptron.cpp.obj	7ad329ee5e88f07c
+8	676	7380369883661935	CMakeFiles/CNN.dir/Network.cpp.obj	563bd515d53e0546

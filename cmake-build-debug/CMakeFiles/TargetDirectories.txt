@@ -1,0 +1,3 @@
+C:/Users/janek/CLionProjects/CNN/cmake-build-debug/CMakeFiles/CNN.dir
+C:/Users/janek/CLionProjects/CNN/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/janek/CLionProjects/CNN/cmake-build-debug/CMakeFiles/rebuild_cache.dir
