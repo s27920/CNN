@@ -15,8 +15,8 @@ private:
     float learningRate = 0.2;
     Image* image;
     std::vector<float> activations;
-    std::vector<Perceptron*> initLayer;
-    std::vector<Perceptron*> terminalLayer;
+    std::vector<Perceptron*> *initLayer;
+    std::vector<Perceptron*> *terminalLayer;
     std::vector<Perceptron *> * hiddenLayers(std::vector<int> &structure, std::vector<Perceptron *> *previousLayer);
     void backProp();
     size_t decodeActivations();

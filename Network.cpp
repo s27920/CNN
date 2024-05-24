@@ -11,8 +11,8 @@
 
 Network::Network(std::vector<int> &structure) {
     std::vector<std::vector<Perceptron*>*> edges = this->createNetwork(structure);
-    initLayer = *edges.at(0);
-    terminalLayer = *edges.at(1);
+    initLayer = edges.at(0);
+    terminalLayer = edges.at(1);
 }
 
 Network::~Network() {
@@ -66,11 +66,11 @@ std::vector<Perceptron *> * Network::hiddenLayers(std::vector<int> &structure, s
 
 void Network::getActivations(Image imageToClassify) {
     const std::vector<int>* pixelVector = imageToClassify.getPixelVector();
-    for (int i = 0; i < initLayer.size(); i ++){
-        initLayer.at(i)->setInputs(std::vector<float>() = {(pixelVector->at(i) & 0xFF)/255.0f});
+    for (int i = 0; i < initLayer->size(); i ++){
+        initLayer->at(i)->setInputs(std::vector<float>() = {(pixelVector->at(i) & 0xFF)/255.0f});
     }
-    std::vector<Perceptron*> currLayer = initLayer;
-    for(;; currLayer = currLayer.at(0)->getSuccessors()){
+    std::vector<Perceptron*>* currLayer = initLayer;
+    for(;; currLayer = currLayer->at(0)->getSuccessors()){
         size_t currSize = currLayer.size();
         for (size_t i = 0; i < currSize; i++){
             currLayer.at(i)->getOutSideInputs();
@@ -88,18 +88,27 @@ void Network::getActivations(Image imageToClassify) {
 }
 
 void Network::backProp() {
-    std::vector<Perceptron*> currLayer = terminalLayer;
+    //start of terminal layer
+    std::vector<Perceptron*>* currLayer = terminalLayer;
     size_t currLayerSize = currLayer.size();
-    std::vector<float> sucErrorVector = std::vector<float>(currLayerSize);
+    std::vector<float> sucErrorGradientVector = std::vector<float>(currLayerSize);
     size_t currentGuess = decodeActivations();
     for (size_t i = 0; i < currLayerSize; i++){
         std::vector<float>* weights = currLayer.at(i)->getWeights();
         std::vector<float>* inputs = currLayer.at(i)->getInputs();
+        size_t inLength = weights->size();
+
         float output = currLayer.at(i)->getOutput();
         float error = (this->image->checkLabel((int)currentGuess) - output);
         float errorGradient = (error * ((1-output)*output));
-
+        for (size_t j = 0; j < inLength; j++) {
+            weights->at(j) += learningRate * errorGradient * inputs->at(j);
+        }
+        sucErrorGradientVector.at(i) = errorGradient;
     }
+    //end of terminal layer
+    //start of hidden layers
+    currLayer = currLayer.at(0)->getPredacessors();
 }
 
 size_t Network::decodeActivations() {

@@ -21,11 +21,11 @@ Perceptron::Perceptron(int inputsSize) {
 }
 
 void Perceptron::getOutSideInputs() {
-    if (predacessors.empty()) {
+    if (predacessors->empty()) {
         //TODO remember to clean this up
         auto* outputs = new std::vector<float>(inputs->size());
         for (int i = 0; i < inputs->size(); i++) {
-            outputs->at(i) = predacessors[i]->getOutput();
+            outputs->at(i) = predacessors->at(i)->getOutput();
         }
         inputs = outputs;
     }
@@ -40,26 +40,26 @@ float Perceptron::getOutput() {
 }
 
 void Perceptron::twoWayLink(std::vector<Perceptron*> *preds) {
-    this->setPredacessors(*preds);
+    this->setPredacessors(preds);
     for (int i = 0; i < inputs->size(); i++){
-        predacessors.at(i)->addSuccessor(this, predacessors.at(i)->getSucIndex());
+        predacessors->at(i)->addSuccessor(this, predacessors->at(i)->getSucIndex());
         connectionCounter++;
     }
 }
 
 void Perceptron::addSuccessor(Perceptron *perceptron, int index) {
-    successors.at(index) = perceptron;
+    successors->at(index) = perceptron;
     sucIndex++;
 }
 
 void Perceptron::initWeights() {
     size_t predCount = 1;
-    if(!predacessors.empty()){
-        predCount = predacessors.size();
+    if(!predacessors->empty()){
+        predCount = predacessors->size();
     }
     std::random_device rd;
     std::mt19937 gen(rd());
-    double stdDev = std::sqrt(2.0 / (predacessors.size() + successors.size()));
+    double stdDev = std::sqrt(2.0 / (predacessors->size() + successors->size()));
     std::normal_distribution<> d(0,stdDev);
     for (int i = 0; i < predCount; i++){
         weights->at(i) = d(gen);
@@ -70,19 +70,13 @@ int Perceptron::getSucIndex() const {
     return sucIndex;
 }
 
-void Perceptron::setPredacessors(const std::vector<Perceptron *> &predacessors) {
-    Perceptron::predacessors = predacessors;
-}
 
-void Perceptron::setSuccessors(const std::vector<Perceptron *> &successors) {
-    Perceptron::successors = successors;
-}
 
-const std::vector<Perceptron *> &Perceptron::getSuccessors() const {
+const std::vector<Perceptron *> *Perceptron::getSuccessors() const {
     return successors;
 }
 
-const std::vector<Perceptron *> &Perceptron::getPredacessors() const {
+const std::vector<Perceptron *> *Perceptron::getPredacessors() const {
     return predacessors;
 }
 
@@ -96,6 +90,14 @@ std::vector<float> *Perceptron::getInputs() const {
 
 std::vector<float> *Perceptron::getWeights() const {
     return weights;
+}
+
+void Perceptron::setPredacessors(std::vector<Perceptron *> *predacessors) {
+    Perceptron::predacessors = predacessors;
+}
+
+void Perceptron::setSuccessors(std::vector<Perceptron *> *successors) {
+    Perceptron::successors = successors;
 }
 
 

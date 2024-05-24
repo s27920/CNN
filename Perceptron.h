@@ -14,13 +14,16 @@ public:
     float getOutput();
     void twoWayLink(std::vector<Perceptron*> *preds);
     int getSucIndex() const;
-    void setPredacessors(const std::vector<Perceptron *> &predacessors);
-    void setSuccessors(const std::vector<Perceptron *> &successors);
+
+    void setPredacessors(std::vector<Perceptron *> *predacessors);
+
+    void setSuccessors(std::vector<Perceptron *> *successors);
+
     void initWeights();
     void setInputs(std::vector<float>& inputs);
 
-    [[nodiscard]] const std::vector<Perceptron *> &getSuccessors() const;
-    [[nodiscard]] const std::vector<Perceptron *> &getPredacessors() const;
+    [[nodiscard]] const std::vector<Perceptron *> *getSuccessors() const;
+    [[nodiscard]] const std::vector<Perceptron *> *getPredacessors() const;
     [[nodiscard]] std::vector<float> *getInputs() const;
     [[nodiscard]] std::vector<float> *getWeights() const;
 
@@ -29,8 +32,8 @@ public:
 private:
     void addSuccessor(Perceptron *perceptron, int index);
     int sucIndex; /*TODO rename*/
-    std::vector<Perceptron*> predacessors;
-    std::vector<Perceptron*> successors;
+    std::vector<Perceptron*> *predacessors;
+    std::vector<Perceptron*> *successors;
     std::vector<float>* inputs;
     std::vector<float>* weights;
 
