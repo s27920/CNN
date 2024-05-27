@@ -8,16 +8,15 @@
 #include <vector>
 class Image {
 private:
-    const std::vector<int>* pixelVector;
-    const int label;
+    const std::vector<unsigned char>* pixelVector;
+    const unsigned char label;
 public:
-    Image(const std::vector<int> *pixelVector, int label);
+    Image(const std::vector<unsigned char> *pixelVector, unsigned char label);
     int checkLabel(int value);
 
 public:
-    const std::vector<int> * getPixelVector() const;
-
-    const int getLabel() const;
+    [[nodiscard]] const std::vector<unsigned char> * getPixelVector() const;
+    [[nodiscard]] const unsigned char getLabel() const;
 };
 
 

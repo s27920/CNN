@@ -4,15 +4,15 @@
 
 #include "Image.h"
 
-const std::vector<int> * Image::getPixelVector() const {
+const std::vector<unsigned char> * Image::getPixelVector() const {
     return pixelVector;
 }
 
-const int Image::getLabel() const {
+const unsigned char Image::getLabel() const {
     return label;
 }
 
-Image::Image(const std::vector<int> *pixelVector, const int label) : pixelVector(pixelVector), label(label) {}
+Image::Image(const std::vector<unsigned char> *pixelVector, const unsigned char label) : pixelVector(pixelVector), label(label) {}
 
 int Image::checkLabel(int value) {
     return value==label;

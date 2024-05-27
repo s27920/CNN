@@ -22,8 +22,8 @@ public:
     void initWeights();
     void setInputs(std::vector<float>& inputs);
 
-    [[nodiscard]] const std::vector<Perceptron *> *getSuccessors() const;
-    [[nodiscard]] const std::vector<Perceptron *> *getPredacessors() const;
+    [[nodiscard]] std::vector<Perceptron *> *getSuccessors() const;
+    [[nodiscard]] std::vector<Perceptron *> *getPredacessors() const;
     [[nodiscard]] std::vector<float> *getInputs() const;
     [[nodiscard]] std::vector<float> *getWeights() const;
 

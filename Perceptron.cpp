@@ -72,11 +72,11 @@ int Perceptron::getSucIndex() const {
 
 
 
-const std::vector<Perceptron *> *Perceptron::getSuccessors() const {
+std::vector<Perceptron *> *Perceptron::getSuccessors() const {
     return successors;
 }
 
-const std::vector<Perceptron *> *Perceptron::getPredacessors() const {
+std::vector<Perceptron *> *Perceptron::getPredacessors() const {
     return predacessors;
 }
 

@@ -73,6 +73,12 @@ build CMakeFiles/CNN.dir/Image.cpp.obj: CXX_COMPILER__CNN_Debug C$:/Users/janek/
   OBJECT_DIR = CMakeFiles\CNN.dir
   OBJECT_FILE_DIR = CMakeFiles\CNN.dir
 
+build CMakeFiles/CNN.dir/Parser.cpp.obj: CXX_COMPILER__CNN_Debug C$:/Users/janek/CLionProjects/CNN/Parser.cpp || cmake_object_order_depends_target_CNN
+  DEP_FILE = CMakeFiles\CNN.dir\Parser.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++23
+  OBJECT_DIR = CMakeFiles\CNN.dir
+  OBJECT_FILE_DIR = CMakeFiles\CNN.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target CNN
@@ -81,7 +87,7 @@ build CMakeFiles/CNN.dir/Image.cpp.obj: CXX_COMPILER__CNN_Debug C$:/Users/janek/
 #############################################
 # Link the executable CNN.exe
 
-build CNN.exe: CXX_EXECUTABLE_LINKER__CNN_Debug CMakeFiles/CNN.dir/main.cpp.obj CMakeFiles/CNN.dir/Perceptron.cpp.obj CMakeFiles/CNN.dir/Network.cpp.obj CMakeFiles/CNN.dir/Image.cpp.obj
+build CNN.exe: CXX_EXECUTABLE_LINKER__CNN_Debug CMakeFiles/CNN.dir/main.cpp.obj CMakeFiles/CNN.dir/Perceptron.cpp.obj CMakeFiles/CNN.dir/Network.cpp.obj CMakeFiles/CNN.dir/Image.cpp.obj CMakeFiles/CNN.dir/Parser.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\CNN.dir
