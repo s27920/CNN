@@ -4,11 +4,11 @@
 
 #include "Image.h"
 
-const std::vector<unsigned char> * Image::getPixelVector() const {
+const std::vector<unsigned char>* Image::getPixelVector() const {
     return pixelVector;
 }
 
-const unsigned char Image::getLabel() const {
+unsigned char Image::getLabel() const {
     return label;
 }
 

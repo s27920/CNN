@@ -16,7 +16,7 @@ public:
 
 public:
     [[nodiscard]] const std::vector<unsigned char> * getPixelVector() const;
-    [[nodiscard]] const unsigned char getLabel() const;
+    [[nodiscard]] unsigned char getLabel() const;
 };
 
 

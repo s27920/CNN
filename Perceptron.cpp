@@ -14,8 +14,10 @@ int Perceptron::objectCounter = 0;
 int Perceptron::connectionCounter = 0;
 
 Perceptron::Perceptron(int inputsSize) {
-    inputs->resize(inputsSize);
-    weights->resize(inputsSize);
+    inputs = new std::vector<float>(inputsSize);
+    weights = new std::vector<float>(inputsSize);
+    predacessors = nullptr;
+    successors = nullptr;
     sucIndex = 0;
     objectCounter++;
 }
@@ -54,12 +56,16 @@ void Perceptron::addSuccessor(Perceptron *perceptron, int index) {
 
 void Perceptron::initWeights() {
     size_t predCount = 1;
-    if(!predacessors->empty()){
+    size_t sucCount = 1;
+    if(predacessors != nullptr){
         predCount = predacessors->size();
+    }
+    if(successors != nullptr){
+        sucCount = successors->size();
     }
     std::random_device rd;
     std::mt19937 gen(rd());
-    double stdDev = std::sqrt(2.0 / (predacessors->size() + successors->size()));
+    double stdDev = std::sqrt(2.0 / (predCount + sucCount));
     std::normal_distribution<> d(0,stdDev);
     for (int i = 0; i < predCount; i++){
         weights->at(i) = d(gen);

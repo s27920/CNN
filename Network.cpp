@@ -64,9 +64,9 @@ std::vector<Perceptron *> * Network::hiddenLayers(std::vector<int> &structure, s
 }
 
 void Network::getActivations(Image imageToClassify) {
-    const std::vector<int>* pixelVector = imageToClassify.getPixelVector();
+    const std::vector<unsigned char>* pixelVector = imageToClassify.getPixelVector();
     for (int i = 0; i < initLayer->size(); i ++){
-        initLayer->at(i)->setInputs(std::vector<float>() = {(pixelVector->at(i) & 0xFF)/255.0f});
+        initLayer->at(i)->setInputs(new std::vector<float>((pixelVector->at(i) & 0xFF)/255.0f));
     }
     std::vector<Perceptron*>* currLayer = initLayer;
     for(;; currLayer = currLayer->at(0)->getSuccessors()){

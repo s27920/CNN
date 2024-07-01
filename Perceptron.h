@@ -20,7 +20,6 @@ public:
     void setSuccessors(std::vector<Perceptron *> *successors);
 
     void initWeights();
-    void setInputs(std::vector<float>& inputs);
 
     [[nodiscard]] std::vector<Perceptron *> *getSuccessors() const;
     [[nodiscard]] std::vector<Perceptron *> *getPredacessors() const;
